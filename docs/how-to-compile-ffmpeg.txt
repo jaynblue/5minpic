@@ -1,0 +1,16 @@
+cd ~/ffmpeg_sources
+wget http://ffmpeg.org/releases/ffmpeg-2.8.tar.bz2
+tar xjvf ffmpeg-2.8.tar.bz2
+cd ffmpeg-2.8
+PATH="$HOME/bin:$PATH" PKG_CONFIG_PATH="$HOME/ffmpeg_build/lib/pkgconfig" ./configure \
+  --prefix="$HOME/ffmpeg_build" \
+  --pkg-config-flags="--static" \
+  --extra-cflags="-I$HOME/ffmpeg_build/include" \
+  --extra-ldflags="-L$HOME/ffmpeg_build/lib" \
+  --bindir="$HOME/bin" \
+  --enable-libquvi \
+  --enable-openssl
+PATH="$HOME/bin:$PATH" make
+make install
+make distclean
+hash -r
