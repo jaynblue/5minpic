@@ -1,0 +1,25 @@
+.calendar {
+    display: inline-block;
+    height: 50%;
+    position: relative;
+}
+
+.calendar img {
+    height: 100%;
+    vertical-align: middle;
+}
+
+.calendar > .calendar__daypicker {
+    display: none;
+}
+
+.calendar_expanded > .calendar__daypicker {
+    display: block;
+}
+
+.calendar__daypicker {
+    position: absolute;
+    top: 45px;
+    right: -55px;
+    box-shadow: 0 0 5px #E4E1E1;
+}

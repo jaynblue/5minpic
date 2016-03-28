@@ -1,0 +1,6 @@
+.more-list {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;;
+    margin: 10px 0px;
+}

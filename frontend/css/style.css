@@ -1,0 +1,94 @@
+.header {
+    border-bottom: 1px solid #EDEEEE;
+    padding: 0 20px;
+    height: 70px;
+    background: #FFF;
+    font-size: 0;
+}
+
+.header__inner {
+    height: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.header__logo {
+    height: 100%;
+    display: inline-block;
+}
+
+.header__logo img {
+    max-height: 90%;
+    vertical-align: middle;
+}
+
+.header__vam-helper {
+    height: 100%;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.header__word {
+    display: inline-block;
+    margin-left: 20px;
+    vertical-align: middle;
+}
+
+.header__search {
+    height: 100%;
+    vertical-align: middle;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+}
+
+.header__search img {
+    height: 50%;
+    vertical-align: middle;
+}
+
+.header__calendar {
+    height: 100%;
+    vertical-align: middle;
+    position: absolute;
+    top: 0;
+    right: 50px;
+    cursor: pointer;
+}
+
+.main {
+    max-width: 900px;
+    margin: 40px auto;
+}
+
+.main-word__caption {
+    font-size: 22px;
+    vertical-align: middle;
+}
+
+.main-word__word {
+    font-size: 40px;
+    text-transform: capitalize;
+    vertical-align: middle;
+    padding-left: 10px;
+    font-weight: bold;
+    color: #3b5998;
+}
+
+.more {
+    margin-top: 50px;
+}
+
+.more__header {
+    font-size: 22px;
+}
+
+.footer {
+    border-top: 1px solid #EDEEEE;
+    padding: 0 20px;
+    line-height: 35px;
+    background: #FFF;
+    text-align: center;
+}
