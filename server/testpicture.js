@@ -9,7 +9,7 @@ function testPicture(pathToPicture) {
                 return false;
             } else {
                 colors = colors.result;
-                var isGoodPicture = (colors[0].percentage + colors[1].percentage < 0.4) ? true : false;
+                var isGoodPicture = colors.length >= 2 && (colors[0].percentage + colors[1].percentage < 0.4);
                 resolve(isGoodPicture);
             }
         });
