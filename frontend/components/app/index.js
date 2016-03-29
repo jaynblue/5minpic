@@ -7,24 +7,26 @@ import MoreList from '~/components/more-list';
 import './styles.css';
 
 export default class App extends React.Component {
-    state = {
-        // initial data is null
-        data: null,
-        mainImage: null,
-        availibleDates: [],
-        selectedDay: new Date()
+    constructor(props) {
+        super(props);
+        this.state = {
+            // initial data is null
+            data: null,
+            availableDates: [],
+            selectedDay: new Date()
+        }
     }
 
     updateData = () => {
+        if (!this.state.selectedDay) return;
         $.get(this.props.source, {
                 date: this.state.selectedDay
             })
             .done(data => {
                 var imagesByDate = data.todayImages.sort((a,b) => b.ctime - a.ctime)
                 this.setState({
-                    mainImage: imagesByDate.shift(),
                     data: imagesByDate,
-                    availibleDates: data.availibleDates
+                    availableDates: data.availableDates
                 });
             });
     }
@@ -34,10 +36,12 @@ export default class App extends React.Component {
     }
 
     handleDayClick = (e, day, modifiers) => {
+        if (day == this.state.selectedDay
+                || ~modifiers.indexOf("selected")
+                || ~modifiers.indexOf("isDisabled")) return;
         this.setState({
-          selectedDay: modifiers.indexOf("selected") > -1 ? null : day
-        });
-        this.updateData();
+          selectedDay: day
+        }, this.updateData);
     }
 
     render() {
@@ -52,28 +56,38 @@ export default class App extends React.Component {
 
         if (this.state.data.length == 0) {
             return (
-                <Header
-                    word="Sorry.. there's no images"
-                    selectedDay={this.state.selectedDay}
-                    handleDayClick={ this.handleDayClick }
-                    />
+                <div className="app">
+                    <Header
+                        word="Sorry.."
+                        selectedDay={this.state.selectedDay}
+                        handleDayClick={this.handleDayClick.bind(this)}
+                        />
+                    <div className="app_message">
+                        There is no images for today<br/>
+                        Please try another date
+                    </div>
+                    <div className="footer">
+                        © {new Date().getFullYear()}, Mak0FFD
+                    </div>
+                </div>
             );
         }
 
         return (
             <div className="app">
                 <Header
-                    word={this.state.mainImage.word}
+                    word={this.state.data[0].word}
                     selectedDay={this.state.selectedDay}
-                    handleDayClick={ this.handleDayClick }
+                    handleDayClick={this.handleDayClick}
+                    availableDates= {this.state.availableDates}
                     />
                 <div className="main">
-                    <MainImage image={this.state.mainImage.path} />
+                    <MainImage image={this.state.data[0].path} />
                     <div className="more">
                         <div className="more__header">
                             More today pictures:
                         </div>
-                        <MoreList data={this.state.data} />
+                        <MoreList data={this.state.data.slice(1)} />
                     </div>
                 </div>
                 <div className="footer">

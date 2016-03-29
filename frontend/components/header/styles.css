@@ -40,13 +40,14 @@
     vertical-align: middle;
     position: absolute;
     top: 0;
-    right: 0;
+    right: 50px;
     cursor: pointer;
 }
 
 .header__search img {
     height: 50%;
     vertical-align: middle;
+    display: none;
 }
 
 .header__calendar {
@@ -54,6 +55,6 @@
     vertical-align: middle;
     position: absolute;
     top: 0;
-    right: 50px;
+    right: 0;
     cursor: pointer;
 }

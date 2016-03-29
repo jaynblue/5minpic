@@ -32,12 +32,14 @@ export default class Calendar extends React.Component {
     render() {
         return (
             <div className={this.state.show ? 'calendar calendar_expanded' : 'calendar'}>
-                <img src={require('~/assets/calendar.svg') } />
+                <img src={require('~/assets/calendar.svg')} />
                 <div className="calendar__daypicker">
                     <DayPicker
-                        onDayClick={ this.props.handleDayClick }
+                        onDayClick={this.props.handleDayClick}
+                        enableOutsideDays={false}
                         modifiers={{
-                            sunday: day => day.getDay() === 0 ,
+                            isDisabled: day => !(day in this.props.availableDates),
+                            sunday: day => day.getDay() === 0,
                             saturday: day => day.getDay() === 6,
                             selected: day => DateUtils.isSameDay(this.props.selectedDay, day)
                         }}

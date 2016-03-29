@@ -10,7 +10,6 @@ app.use(morgan('combined'));
 app.use(compression());
 
 app.get('/imageslist', (req, res) => {
-  console.log(req.query);
   getImagesList(req.query.date).then(result => {
     res.json(result);
   });

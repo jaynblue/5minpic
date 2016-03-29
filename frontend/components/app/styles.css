@@ -7,6 +7,10 @@ html, body, #app {
     height: 100%;
 }
 
+body {
+    overflow-y: scroll;
+}
+
 .app {
     background-color: #FAFAFA;
     font-family: 'Oxygen', sans-serif;
@@ -18,4 +22,12 @@ html, body, #app {
     display:flex;
     justify-content:center;
     align-items:center;
+}
+
+.app_message {
+    text-align: center;
+    margin-top: 200px;
+    height: 400px;
+    font-size: 30px;
+    line-height: 130%;
 }
