@@ -32,7 +32,7 @@ module.exports = (requestDate) => {
             files.forEach(filename => {
                 var filePath = path + filename;
                 stat = fs.statSync(filePath);
-                if(stat.isFile()) {
+                if(stat.isFile() && !~filename.indexOf('min')) {
                     var createDate = new Date(stat['ctime']);
                     var createDay = getDay(createDate, 0, 12, 0, 0)+'';
                     result.availableDates[createDay] = createDate;

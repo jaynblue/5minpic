@@ -1,6 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
 import Header from '~/components/header';
+import Footer from '~/components/footer';
 import MainImage from '~/components/main-image';
 import MoreList from '~/components/more-list';
 
@@ -44,6 +45,11 @@ export default class App extends React.Component {
         }, this.updateData);
     }
 
+    addMinToPath = (item) => {
+        item.path = item.path.slice(0, item.path.length-4) +'_min'+ item.path.slice(-4);
+        return item;
+    }
+
     render() {
 
         if (this.state.data === null) {
@@ -67,9 +73,7 @@ export default class App extends React.Component {
                         There is no images for today<br/>
                         Please try another date
                     </div>
-                    <div className="footer">
-                        © {new Date().getFullYear()}, Mak0FFD
-                    </div>
+                    <Footer />
                 </div>
             );
         }
@@ -88,12 +92,12 @@ export default class App extends React.Component {
                         <div className="more__header">
                             More today pictures:
                         </div>
-                        <MoreList data={this.state.data.slice(1)} />
+                        <MoreList data={
+                            this.state.data.slice(1).map(item => this.addMinToPath(item))
+                            } />
                     </div>
                 </div>
-                <div className="footer">
-                    © {new Date().getFullYear()}, Mak0FFD
-                </div>
+                <Footer />
             </div>
 
         );
