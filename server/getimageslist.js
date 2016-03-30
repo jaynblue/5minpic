@@ -1,3 +1,5 @@
+process.env.TZ = 'Asia/Ho_Chi_Minh';
+
 var fs = require('fs');
 
 const path = __dirname + '/../public/images/'

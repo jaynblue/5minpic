@@ -60,7 +60,8 @@ export default class App extends React.Component {
                     <Header
                         word="Sorry.."
                         selectedDay={this.state.selectedDay}
-                        handleDayClick={this.handleDayClick.bind(this)}
+                        handleDayClick={this.handleDayClick}
+                        availableDates= {this.state.availableDates}
                         />
                     <div className="app_message">
                         There is no images for today<br/>
