@@ -42,7 +42,10 @@ export default class App extends React.Component {
                 || ~modifiers.indexOf("isDisabled")) return;
         this.setState({
           selectedDay: day
-        }, this.updateData);
+      }, () => {
+          this.refs['moreList'].resetStartState();
+          this.updateData();
+      });
     }
 
     addMinToPath = (item) => {
@@ -93,6 +96,7 @@ export default class App extends React.Component {
                             More today pictures:
                         </div>
                         <MoreList
+                            ref="moreList"
                             data = {
                                 this.state.data.slice(1).map(item => this.addMinToPath(item))
                             } />

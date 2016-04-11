@@ -12,6 +12,12 @@ export default class MoreList extends React.Component {
         }
     }
 
+    resetStartState = () => {
+        this.setState({
+            photosToShow: SHOW_NUM
+        });
+    }
+
     updateNumberToShow = () => {
         this.setState({
             photosToShow: this.state.photosToShow + SHOW_NUM
