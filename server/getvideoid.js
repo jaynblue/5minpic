@@ -73,7 +73,7 @@ function getRandomElement(data) {
 function getVideosData(wordList) {
     return new Promise((resolve, reject) => {
         (function generateAndSearch() {
-            var randomString = getRandomElement(wordList);
+            var randomString = getRandomElement(wordList).replace(/'/g, "");
             console.log('Fetching videos with request:', randomString);
             searchVideoByPhrase(randomString).then((videos) => {
                 if (videos.items.length > 0) {

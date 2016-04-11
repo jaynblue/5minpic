@@ -92,8 +92,9 @@ export default class App extends React.Component {
                         <div className="more__header">
                             More today pictures:
                         </div>
-                        <MoreList data={
-                            this.state.data.slice(1).map(item => this.addMinToPath(item))
+                        <MoreList
+                            data = {
+                                this.state.data.slice(1).map(item => this.addMinToPath(item))
                             } />
                     </div>
                 </div>
