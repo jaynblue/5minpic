@@ -20,6 +20,10 @@ function dateInRange(date, rangeDate) {
     return (midnight <= date) && (date <= nextMidnight);
 }
 
+function addMinToPath(path) {
+    return path.slice(0, path.length-4) +'_min'+ path.slice(-4);
+}
+
 module.exports = (requestDate) => {
     if(!requestDate) return false;
     return new Promise(function(resolve, reject) {
@@ -38,6 +42,7 @@ module.exports = (requestDate) => {
                     result.availableDates[createDay] = createDate;
                     dateInRange(createDate, requestDate) && result.todayImages.push({
                         path: filePath.split('public')[1],
+                        min_path: addMinToPath(filePath.split('public')[1]),
                         ctime: createDate.getTime(),
                         word: filename.split('_')[0]
                     });

@@ -10,7 +10,7 @@ export default class MoreItem extends React.Component {
                     {this.props.image.word}
                 </div>
                 <div className="more-item__image">
-                    <img src={this.props.image.path} />
+                    <img src={this.props.image.min_path} />
                 </div>
             </div>
         );

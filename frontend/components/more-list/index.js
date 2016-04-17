@@ -2,7 +2,7 @@ import React from 'react';
 import MoreItem from '~/components/more-item';
 import '~/components/more-list/styles.css';
 
-const SHOW_NUM = 20;
+const SHOW_NUM = 16;
 
 export default class MoreList extends React.Component {
     constructor(props) {

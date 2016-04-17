@@ -1,0 +1,10 @@
+.progress-bar {
+    margin-top: 1px;
+    transition: all .4s;
+}
+.progress-bar__fill {
+    height: 3px;
+    background: #3b5998;
+    box-shadow: 0 0 1px #3b5998,0 0 2px #3b5998;
+    transition: all .2s ease;
+}

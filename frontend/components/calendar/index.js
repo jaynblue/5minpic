@@ -10,7 +10,7 @@ export default class Calendar extends React.Component {
 
     toggleCalendar = (e) => {
         if (ReactDOM.findDOMNode(this).contains(e.target)) {
-            if (this.state.show) return;
+            if (this.state.show && !e.target.src) return;
             this.setState({
                 show: !this.state.show
             });
@@ -41,7 +41,7 @@ export default class Calendar extends React.Component {
                             isDisabled: day => !(day in this.props.availableDates),
                             sunday: day => day.getDay() === 0,
                             saturday: day => day.getDay() === 6,
-                            selected: day => DateUtils.isSameDay(this.props.selectedDay, day)
+                            selected: day => DateUtils.isSameDay(new Date(this.props.selectedDay), day)
                         }}
                         />
                 </div>

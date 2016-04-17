@@ -8,32 +8,42 @@ import MoreList from '~/components/more-list';
 import './styles.css';
 
 export default class App extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            // initial data is null
-            data: null,
-            availableDates: [],
-            selectedDay: new Date()
-        }
+
+    state = {
+        // initial data is null
+        data: null,
+        availableDates: [],
+        selectedDay: new Date().toDateString(),
+        startTime: 0
     }
 
-    updateData = () => {
+    cachedData = {}
+
+    updateData = (options = {cache: true}) => {
         if (!this.state.selectedDay) return;
-        $.get(this.props.source, {
+        if (!options.cache ||  !this.cachedData[this.state.selectedDay]) {
+            $.get(this.props.source, {
                 date: this.state.selectedDay
             })
             .done(data => {
-                var imagesByDate = data.todayImages.sort((a,b) => b.ctime - a.ctime)
+                this.cachedData[this.state.selectedDay]= {
+                    data: data.todayImages.sort((a,b) => b.ctime - a.ctime),
+                    availableDates: data.availableDates,
+                    startTime: data.startTime
+                }
                 this.setState({
-                    data: imagesByDate,
-                    availableDates: data.availableDates
+                    ...this.cachedData[this.state.selectedDay]
                 });
             });
+        } else {
+            this.setState({
+                ...this.cachedData[this.state.selectedDay]
+            });
+        }
     }
 
     componentDidMount() {
-        this.updateData();
+        this.updateData({cache: false});
     }
 
     handleDayClick = (e, day, modifiers) => {
@@ -41,16 +51,11 @@ export default class App extends React.Component {
                 || ~modifiers.indexOf("selected")
                 || ~modifiers.indexOf("isDisabled")) return;
         this.setState({
-          selectedDay: day
+          selectedDay: day.toDateString()
       }, () => {
-          this.refs['moreList'].resetStartState();
-          this.updateData();
+        this.refs['moreList'] && this.refs['moreList'].resetStartState();
+        this.updateData();
       });
-    }
-
-    addMinToPath = (item) => {
-        item.path = item.path.slice(0, item.path.length-4) +'_min'+ item.path.slice(-4);
-        return item;
     }
 
     render() {
@@ -68,9 +73,9 @@ export default class App extends React.Component {
                 <div className="app">
                     <Header
                         word="Sorry.."
-                        selectedDay={this.state.selectedDay}
-                        handleDayClick={this.handleDayClick}
-                        availableDates= {this.state.availableDates}
+                        selectedDay = {this.state.selectedDay}
+                        handleDayClick = {this.handleDayClick}
+                        availableDates = {this.state.availableDates}
                         />
                     <div className="app_message">
                         There is no images for today<br/>
@@ -84,10 +89,12 @@ export default class App extends React.Component {
         return (
             <div className="app">
                 <Header
-                    word={this.state.data[0].word}
-                    selectedDay={this.state.selectedDay}
-                    handleDayClick={this.handleDayClick}
-                    availableDates= {this.state.availableDates}
+                    word = {this.state.data[0].word}
+                    selectedDay = {this.state.selectedDay}
+                    handleDayClick = {this.handleDayClick}
+                    availableDates = {this.state.availableDates}
+                    onTimer = {this.updateData.bind(this, {cache: false})}
+                    startTime = {this.state.startTime}
                     />
                 <div className="main">
                     <MainImage image={this.state.data[0].path} />
@@ -97,9 +104,8 @@ export default class App extends React.Component {
                         </div>
                         <MoreList
                             ref="moreList"
-                            data = {
-                                this.state.data.slice(1).map(item => this.addMinToPath(item))
-                            } />
+                            data = {this.state.data.slice(1)}
+                            />
                     </div>
                 </div>
                 <Footer />

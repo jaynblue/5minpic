@@ -101,6 +101,7 @@
 .DayPicker-Day--outside {
   cursor: default;
   color: #dce0e0;
+  background-color: #e6e6e6;
 }
 
 /* Example modifiers */

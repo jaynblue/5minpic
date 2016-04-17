@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Calendar from '~/components/calendar';
+import ProgressBar from '~/components/progressbar';
 
 import './styles.css';
 
@@ -17,9 +18,6 @@ export default class Header extends React.Component {
                     </div>
                     <div className="header__word">
                         <div className="main-word">
-                            <span className="main-word__caption">
-                                5 minutes picture name:
-                            </span>
                             <span className="main-word__word">
                                 {this.props.word}
                             </span>
@@ -33,11 +31,17 @@ export default class Header extends React.Component {
                         <span className="header__vam-helper" />
                             <Calendar
                                 selectedDay = {this.props.selectedDay}
-                                handleDayClick={this.props.handleDayClick}
-                                availableDates= {this.props.availableDates}
+                                handleDayClick = {this.props.handleDayClick}
+                                availableDates = {this.props.availableDates}
                                 />
                     </div>
                 </div>
+                {this.props.onTimer ?
+                    <ProgressBar
+                        onEnd = {this.props.onTimer}
+                        startTime = {this.props.startTime}
+                        />
+                : ''}
             </div>
 
         );

@@ -1,20 +1,7 @@
 .main {
     max-width: 900px;
-    margin: 40px auto;
-}
-
-.main-word__caption {
-    font-size: 22px;
-    vertical-align: middle;
-}
-
-.main-word__word {
-    font-size: 40px;
-    text-transform: capitalize;
-    vertical-align: middle;
-    padding-left: 10px;
-    font-weight: bold;
-    color: #3b5998;
+    padding: 110px 0 40px;
+    margin: 0 auto;
 }
 
 .more {
