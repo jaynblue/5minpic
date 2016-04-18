@@ -18,10 +18,12 @@
 .header__logo {
     height: 100%;
     display: inline-block;
+    width: 65px;
 }
 
 .header__logo img {
     max-height: 90%;
+    width: 100%;
     vertical-align: middle;
 }
 
@@ -37,7 +39,7 @@
     vertical-align: middle;
 }
 
-.header__search {
+.header__search, .header__list {
     height: 100%;
     vertical-align: middle;
     position: absolute;
@@ -49,7 +51,19 @@
 .header__search img {
     height: 50%;
     vertical-align: middle;
+}
+
+.header__search {
     display: none;
+}
+
+.header__list {
+    right: 60px;
+}
+
+.header__list img {
+    height: 36%;
+    vertical-align: middle;
 }
 
 .header__calendar {

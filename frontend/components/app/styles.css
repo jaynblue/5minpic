@@ -31,3 +31,23 @@ body {
     font-size: 30px;
     line-height: 130%;
 }
+
+.main {
+    max-width: 900px;
+    padding: 100px 0 40px;
+    margin: 0 auto;
+}
+
+.more {
+    margin-top: 30px;
+}
+
+.more__header {
+    font-size: 22px;
+}
+
+.more__anchor {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}

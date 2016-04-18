@@ -27,6 +27,10 @@ export default class Header extends React.Component {
                         <span className="header__vam-helper" />
                         <img src={require('~/assets/search.svg') } />
                     </div>
+                    <div className="header__list">
+                        <span className="header__vam-helper" />
+                        <img src={require('~/assets/list.svg') } />
+                    </div>
                     <div className="header__calendar">
                         <span className="header__vam-helper" />
                             <Calendar

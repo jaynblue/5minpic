@@ -6,9 +6,11 @@ export default class MainImage extends React.Component {
     render() {
         return (
             <div className="main-image">
-                <img
-                    src={this.props.image}
-                    alt />
+                <div className="main-image__wrap">
+                    <img
+                        src={this.props.image}
+                        alt />
+                </div>
             </div>
         );
     }

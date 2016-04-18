@@ -26,9 +26,15 @@ export default class App extends React.Component {
                 date: this.state.selectedDay
             })
             .done(data => {
+                var newDates = {};
+                Object.assign(
+                    newDates,
+                    this.state.avaliableDates,
+                    data.availableDates
+                );
                 this.cachedData[this.state.selectedDay]= {
                     data: data.todayImages.sort((a,b) => b.ctime - a.ctime),
-                    availableDates: data.availableDates,
+                    availableDates: newDates,
                     startTime: data.startTime
                 }
                 this.setState({
@@ -56,6 +62,10 @@ export default class App extends React.Component {
         this.refs['moreList'] && this.refs['moreList'].resetStartState();
         this.updateData();
       });
+    }
+
+    handleMoreClick = () => {
+        window.scrollTo(0, 555);
     }
 
     render() {
@@ -100,7 +110,7 @@ export default class App extends React.Component {
                     <MainImage image={this.state.data[0].path} />
                     <div className="more">
                         <div className="more__header">
-                            More today pictures:
+                            <span onClick={this.handleMoreClick} className="more__anchor">More today pictures:</span>
                         </div>
                         <MoreList
                             ref="moreList"
