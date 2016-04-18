@@ -29,7 +29,7 @@ export default class App extends React.Component {
                 var newDates = {};
                 Object.assign(
                     newDates,
-                    this.state.avaliableDates,
+                    this.state.availableDates,
                     data.availableDates
                 );
                 this.cachedData[this.state.selectedDay]= {
