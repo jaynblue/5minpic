@@ -67,7 +67,8 @@ export default {
 			{
 				template: __dirname + '/frontend/index.html',
 				filename: 'index.html',
-				inject: 'body'
+				inject: 'body',
+				favicon: __dirname + '/frontend/assets/favicon.ico'
 			}
 		),
 		new webpack.optimize.DedupePlugin(),

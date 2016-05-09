@@ -4,7 +4,7 @@
 }
 .progress-bar__fill {
     height: 3px;
-    background: #3b5998;
-    box-shadow: 0 0 1px #3b5998,0 0 2px #3b5998;
+    background: #244298;
+    /*box-shadow: 0 0 1px #244298,0 0 2px #244298;*/
     transition: all .2s ease;
 }

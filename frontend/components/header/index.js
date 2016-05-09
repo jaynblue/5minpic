@@ -14,7 +14,7 @@ export default class Header extends React.Component {
                 <div className="header__inner">
                     <div className="header__logo">
                         <span className="header__vam-helper" />
-                        <img src={require('~/assets/logo.png') } />
+                        <img src={require('~/assets/logo.svg') } />
                     </div>
                     <div className="header__word">
                         <div className="main-word">

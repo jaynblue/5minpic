@@ -3,7 +3,7 @@ import $ from 'jquery';
 import Header from '~/components/header';
 import Footer from '~/components/footer';
 import MainImage from '~/components/main-image';
-import MoreList from '~/components/more-list';
+import ImageList from '~/components/image-list';
 
 import './styles.css';
 
@@ -56,16 +56,13 @@ export default class App extends React.Component {
         if (day == this.state.selectedDay
                 || ~modifiers.indexOf("selected")
                 || ~modifiers.indexOf("isDisabled")) return;
-        this.setState({
-          selectedDay: day.toDateString()
-      }, () => {
-        this.refs['moreList'] && this.refs['moreList'].resetStartState();
-        this.updateData();
-      });
-    }
-
-    handleMoreClick = () => {
-        window.scrollTo(0, 555);
+        this.setState(
+            { selectedDay: day.toDateString() },
+            () => {
+                this.refs['imageList'] && this.refs['imageList'].resetStartState();
+                this.updateData();
+            }
+        );
     }
 
     render() {
@@ -107,16 +104,7 @@ export default class App extends React.Component {
                     startTime = {this.state.startTime}
                     />
                 <div className="main">
-                    <MainImage image={this.state.data[0].path} />
-                    <div className="more">
-                        <div className="more__header">
-                            <span onClick={this.handleMoreClick} className="more__anchor">More today pictures:</span>
-                        </div>
-                        <MoreList
-                            ref="moreList"
-                            data = {this.state.data.slice(1)}
-                            />
-                    </div>
+                    <ImageList ref="imageList" data = {this.state.data} />
                 </div>
                 <Footer />
             </div>
