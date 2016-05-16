@@ -2,6 +2,8 @@ var fs = require('fs');
 var ffmpeg = require('fluent-ffmpeg');
 var moment = require('moment');
 var im = require('imagemagick');
+var imagemin = require('imagemin');
+var imageminPngquant = require('imagemin-pngquant');
 
 var getVideoId = require('./getvideoid.js');
 var testPicture = require('./testpicture.js');
@@ -31,17 +33,24 @@ module.exports = function getScreenshot() {
                 if (isGood) {
                     console.log(`5 minute word: ${video.word}`);
                     console.log(`Saved.`);
-                    im.crop({
-                        srcPath: screenShotPath,
-                        dstPath: addMinToName(screenShotPath),
-                        width: 190,
-                        height: 100,
-                        quality: 1,
-                        gravity: 'Center'
-                    }, function(err, stdout, stderr){
-                        if (err) throw err;
-                        console.log(`Cropped ${screenShotPath}`);
-                    });
+                    imagemin([screenShotPath], screenShotPath, {
+                    	plugins: [
+                    		imageminPngquant({quality: '65-80'})
+                    	]
+                    }).then(files => {
+                        console.log(`Optimized ${screenShotPath}`);
+                        im.crop({
+                            srcPath: screenShotPath,
+                            dstPath: addMinToName(screenShotPath),
+                            width: 190,
+                            height: 100,
+                            quality: 1,
+                            gravity: 'Center'
+                        }, function(err, stdout, stderr){
+                            if (err) throw err;
+                            console.log(`Cropped ${screenShotPath}`);
+                        });
+                    }).catch(err => console.log('Imagemin error: ',err));
                 } else {
                     console.log('Seems to be a bad one. Need to take one more..');
                     fs.unlink(screenShotPath, (err) => {
