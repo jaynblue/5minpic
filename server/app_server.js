@@ -68,8 +68,6 @@ updateData(new Date(start).toDateString(), start).then(() => {
         getData(req.query.date).then(result => {res.json(result)})
     });
 
-    app.use(express.static(__dirname + '/../public'));
-
     app.listen(process.env.PORT || 3000, () => {
         console.log('Listening on http://localhost:' + (process.env.PORT || 3000))
     })
