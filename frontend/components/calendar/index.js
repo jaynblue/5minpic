@@ -32,7 +32,7 @@ export default class Calendar extends React.Component {
     render() {
         return (
             <div className={this.state.show ? 'calendar calendar_expanded' : 'calendar'}>
-                <img src={require('~/assets/calendar.svg')} />
+                <img src={require('../../assets/calendar.svg')} />
                 <div className="calendar__daypicker">
                     <DayPicker
                         onDayClick={this.props.handleDayClick}

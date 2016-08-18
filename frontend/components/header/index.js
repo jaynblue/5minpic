@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Calendar from '~/components/calendar';
-import ProgressBar from '~/components/progressbar';
+import Calendar from '../calendar';
+import ProgressBar from '../progressbar';
 
 import './styles.css';
 
@@ -14,7 +14,7 @@ export default class Header extends React.Component {
                 <div className="header__inner">
                     <div className="header__logo">
                         <span className="header__vam-helper" />
-                        <img src={require('~/assets/logo.svg') } />
+                        <img src={require('../../assets/logo.svg') } />
                     </div>
                     <div className="header__word">
                         <div className="main-word">
@@ -25,11 +25,11 @@ export default class Header extends React.Component {
                     </div>
                     <div className="header__search">
                         <span className="header__vam-helper" />
-                        <img src={require('~/assets/search.svg') } />
+                        <img src={require('../../assets/search.svg') } />
                     </div>
                     <div className="header__list">
                         <span className="header__vam-helper" />
-                        <img src={require('~/assets/list.svg') } />
+                        <img src={require('../../assets/list.svg') } />
                     </div>
                     <div className="header__calendar">
                         <span className="header__vam-helper" />

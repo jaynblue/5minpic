@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import MainImage from '~/components/main-image';
-import '~/components/image-list/styles.css';
+import MainImage from '../main-image';
+import '../image-list/styles.css';
 
 const SHOW_NUM = 5;
 const TO_BOTTOM = 100;

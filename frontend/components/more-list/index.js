@@ -1,6 +1,6 @@
 import React from 'react';
-import MoreItem from '~/components/more-item';
-import '~/components/more-list/styles.css';
+import MoreItem from '../more-item';
+import '../more-list/styles.css';
 
 const SHOW_NUM = 16;
 

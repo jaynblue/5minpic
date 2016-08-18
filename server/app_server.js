@@ -1,6 +1,8 @@
 var express = require('express');
 var morgan = require('morgan');
 var compression = require('compression');
+var webpack = require('webpack');
+var config = require('../webpack.config.dev');
 
 var getImagesList = require('./getimageslist');
 
@@ -61,10 +63,30 @@ function updateToday() {
 }
 
 updateData(new Date(start).toDateString(), start).then(() => {
-    app.use(morgan('combined'));
+
+    if (process.env.NODE_ENV == 'production') {
+        app.use(morgan('combined'));
+    } else {
+        var compiler = webpack(config);
+
+        app.use(require('webpack-dev-middleware')(compiler, {
+          noInfo: true,
+          quiet: true,
+          publicPath: config.output.publicPath
+        }));
+
+        app.use(require('webpack-hot-middleware')(compiler, {
+          log: () => {}
+        }));
+    }
+
     app.use(compression());
+    app.use(express.static(__dirname + '/../public'));
 
     app.get('/imageslist', (req, res) => {
+        if (!req.query.date) {
+            res.status(500).send('Please send the date');
+        }
         getData(req.query.date).then(result => {res.json(result)})
     });
 

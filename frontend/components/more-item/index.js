@@ -1,5 +1,5 @@
 import React from 'react';
-import '~/components/more-item/styles.css';
+import '../more-item/styles.css';
 
 export default class MoreItem extends React.Component {
 

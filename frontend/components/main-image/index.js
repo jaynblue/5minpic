@@ -1,5 +1,5 @@
 import React from 'react';
-import '~/components/main-image/styles.css';
+import '../main-image/styles.css';
 
 export default class MainImage extends React.Component {
 
@@ -26,13 +26,15 @@ export default class MainImage extends React.Component {
                     <img src={this.props.image.path} />
                 </div>
                 <div className="main-image__footer">
-                    <img
-                        className="twitter-button"
-                        src={require('~/assets/twitter.svg')}
-                        />
+                    <a href="https://twitter.com/intent/tweet">
+                        <img
+                            className="twitter-button"
+                            src={require('../../assets/twitter.svg')}
+                            />
+                    </a>
                     <img
                         className="facebook-button"
-                        src={require('~/assets/facebook.svg')}
+                        src={require('../../assets/facebook.svg')}
                         onClick={this.handleFBclick}
                         />
                 </div>

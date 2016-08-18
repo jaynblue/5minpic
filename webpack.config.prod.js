@@ -1,13 +1,11 @@
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
-import webpack from 'webpack';
-import autoprefixer from 'autoprefixer';
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var webpack = require('webpack');
+var autoprefixer = require('autoprefixer');
 
-const NODE_ENV = process.env.NODE_ENV || 'development';
-
-export default {
-	watch: NODE_ENV == 'development',
-	devtool: NODE_ENV == 'development' ? 'cheap-inline-module-source-map' : null,
+module.exports = {
+	watch: false,
+	devtool: null,
 	entry: {
 		vendor: [
             'react',
@@ -20,11 +18,6 @@ export default {
 		filename: 'js/[name].js',
 		publicPath: '/',
 		path: __dirname + '/public'
-	},
-	resolve: {
-		alias: {
-			'~': __dirname + '/frontend'
-		}
 	},
 	module: {
 		loaders: [
@@ -61,7 +54,7 @@ export default {
     },
 	plugins: [
 		new webpack.optimize.CommonsChunkPlugin('vendor', 'js/[name].js'),
-		// new webpack.optimize.UglifyJsPlugin({minimize: true}),
+		new webpack.optimize.UglifyJsPlugin({minimize: true}),
 		new ExtractTextPlugin('css/[name].css', { allChunks: true }),
 		new HtmlWebpackPlugin(
 			{

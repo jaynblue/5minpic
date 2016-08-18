@@ -1,13 +1,23 @@
 {
-  "name": "daypic_front",
-  "version": "1.0.0",
-  "description": "",
+  "name": "5snap.net",
+  "version": "0.0.1",
+  "description": "ᕙ(⇀‸↼‶)ᕗ",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/makoffd/5minpic.git"
+  },
   "dependencies": {
     "babel": "^6.5.2",
+    "babel-plugin-react-transform": "^2.0.2",
+    "babel-plugin-transform-object-rest-spread": "^6.8.0",
+    "babel-plugin-transform-react-display-name": "^6.8.0",
     "jquery": "^2.2.2",
     "react": "^0.14.7",
-    "react-dom": "^0.14.7"
+    "react-dom": "^0.14.7",
+    "react-transform-catch-errors": "^1.0.2",
+    "react-transform-hmr": "^1.0.4",
+    "redbox-react": "^1.3.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.4",
@@ -25,11 +35,16 @@
     "postcss-loader": "^0.8.2",
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.7",
-    "webpack": "^1.12.14"
+    "webpack": "^1.12.14",
+    "webpack-dev-middleware": "^1.6.1",
+    "webpack-hot-middleware": "^2.12.2"
   },
   "scripts": {
+    "build:prod": "NODE_ENV=production webpack --config webpack.config.prod.js",
+    "build:dev": "webpack --config webpack.config.dev.js",
+    "start": "node server/app_server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "MakoffD",
   "license": "ISC"
 }

@@ -1,9 +1,9 @@
 import React from 'react';
 import $ from 'jquery';
-import Header from '~/components/header';
-import Footer from '~/components/footer';
-import MainImage from '~/components/main-image';
-import ImageList from '~/components/image-list';
+import Header from '../header';
+import Footer from '../footer';
+import MainImage from '../main-image';
+import ImageList from '../image-list';
 
 import './styles.css';
 
@@ -21,6 +21,9 @@ export default class App extends React.Component {
 
     updateData = (options = {cache: true}) => {
         if (!this.state.selectedDay) return;
+        this.setState({
+            data: null
+        });
         if (!options.cache ||  !this.cachedData[this.state.selectedDay]) {
             $.get(this.props.source, {
                 date: this.state.selectedDay
