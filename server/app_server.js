@@ -1,3 +1,4 @@
+'use strict'
 const configPath = process.env.NODE_ENV === 'production' ?
 	'webpack.config.prod' : 'webpack.config.dev';
 const express = require('express');
