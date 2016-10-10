@@ -492,8 +492,6 @@ export default class DayPicker extends Component {
           (e) => this.handleDayMouseLeave(e, day, modifiers) : null }
         onClick= { onDayClick ?
           (e) => this.handleDayClick(e, day, modifiers) : null }
-        onTouchTap= { onDayTouchTap ?
-          (e) => this.handleDayTouchTap(e, day, modifiers) : null }
         >
         { this.props.renderDay(day) }
       </div>
@@ -519,9 +517,20 @@ export default class DayPicker extends Component {
       months.push(this.renderMonth(month, i));
     }
 
+    const {
+      onDayClick,
+      enableOutsideDays,
+      modifiers,
+      initialMonth,
+      localeUtils,
+      renderDay,
+      captionElement,
+      ...restAtributes
+      } = attributes;
+
     return (
       <div
-        {...attributes}
+        {...restAtributes}
         className={ className }
         ref="dayPicker"
         role="widget"

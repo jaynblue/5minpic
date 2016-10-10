@@ -1,17 +1,18 @@
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const webpack = require('webpack');
+const path = require('path');
 
 module.exports = {
 	devtool: 'cheap-inline-module-source-map',
 	entry: {
 		vendor: [
-            'react',
-            'react-dom',
-			'jquery',
+			'react',
+			'react-dom',
 			'webpack-hot-middleware/client'
-        ],
+		],
 		app: [
+			'babel-polyfill',
 			'./frontend/index.js',
 			'webpack-hot-middleware/client'
 		]
@@ -19,21 +20,21 @@ module.exports = {
 	output: {
 		filename: 'js/[name].js',
 		publicPath: '/',
-		path: __dirname + '/public'
+		path: path.join(__dirname, '/public')
 	},
 	module: {
 		loaders: [
 			{
-                test: /\.(png|jpg|gif|svg)$/,
-                loader: 'url',
-                query: {
-                    limit: 10000,
-                    name: 'assets/[name].[ext]'
-                }
-            },
+				test: /\.(png|jpg|gif|svg)$/,
+				loader: 'url',
+				query: {
+					limit: 10000,
+					name: 'assets/[name].[ext]'
+				}
+			},
 			{
 				test: /\.js$/,
-				include: __dirname + '/frontend',
+				include: path.join(__dirname, '/frontend'),
 				loader: 'babel-loader'
 			},
 			{
@@ -44,16 +45,16 @@ module.exports = {
 	},
 	plugins: [
 		new webpack.optimize.OccurenceOrderPlugin(),
-    	new webpack.HotModuleReplacementPlugin(),
-    	new webpack.NoErrorsPlugin(),
+		new webpack.HotModuleReplacementPlugin(),
+		new webpack.NoErrorsPlugin(),
 		new ExtractTextPlugin('css/[name].css', { allChunks: true }),
 		new HtmlWebpackPlugin(
 			{
-				template: __dirname + '/frontend/index.html',
+				template: path.join(__dirname, '/frontend/index.html'),
 				filename: 'index.html',
 				inject: 'body',
-				favicon: __dirname + '/frontend/assets/favicon.ico'
+				favicon: path.join(__dirname, '/frontend/assets/favicon.ico')
 			}
-		),
+		)
 	]
-}
+};

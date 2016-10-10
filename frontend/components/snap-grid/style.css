@@ -1,0 +1,20 @@
+.snap-grid {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.snap-grid__item {
+    margin-right: 28px;
+    margin-bottom: 28px;
+    flex-basis: calc(33.33% - 2.5rem);
+    flex-shrink: 0;
+    background: #fff;
+    padding: 10px;
+    box-shadow: 0 0 0 5px rgba(0,0,0,0.03);
+}
+
+.snap-grid__item:nth-child(3n) {
+    margin-right: 0;
+}

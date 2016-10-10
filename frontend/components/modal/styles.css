@@ -1,0 +1,26 @@
+.modal {
+    position: absolute;
+    width: 600px;
+    left: calc(50% - 300px);
+    top: 40px;
+    border: 1px solid #CCC;
+    background-color: #FFF;
+    overflow: auto;
+    border-radius: 4px;
+    outline: none;
+    padding: 20px;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+}
+
+.modal__title {
+    padding-bottom: 10px
+}
+
+.modal__close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+}

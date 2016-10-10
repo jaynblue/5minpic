@@ -1,0 +1,23 @@
+.snap {
+
+}
+
+.snap__image {
+    max-width: 100%;
+}
+
+.snap__link {
+    text-decoration: none;
+}
+
+.snap__caption {
+    text-transform: capitalize;
+    color: #244298;
+}
+
+.snap__header {
+    text-align: center;
+    text-transform: capitalize;
+    color: #244298;
+    padding-bottom: 10px;
+}

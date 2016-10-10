@@ -42,8 +42,8 @@ module.exports = function getScreenshot() {
                         im.crop({
                             srcPath: screenShotPath,
                             dstPath: addMinToName(screenShotPath),
-                            width: 190,
-                            height: 100,
+                            width: 300,
+                            height: 300,
                             quality: 1,
                             gravity: 'Center'
                         }, function(err, stdout, stderr){

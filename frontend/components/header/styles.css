@@ -35,7 +35,7 @@
 
 .header__word {
     display: inline-block;
-    margin-left: 20px;
+    margin-left: 0px;
     vertical-align: middle;
 }
 
@@ -75,10 +75,41 @@
     cursor: pointer;
 }
 
+.header__about {
+    height: 100%;
+    line-height: 70px;
+    vertical-align: middle;
+    position: absolute;
+    top: 0;
+    right: 70px;
+    cursor: pointer;
+    text-transform: capitalize;
+    font-size: 24px;
+}
+
+.header__about-content {
+    line-height: 200%;
+}
+
 .main-word__word {
     font-size: 40px;
     text-transform: capitalize;
     vertical-align: middle;
     font-weight: bold;
     color: #244298;
+}
+
+.social {
+    padding-top: 10px;
+    text-align: center;
+}
+
+.social a {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.social a + a {
+    padding-top: 4px;
+    margin-left: 10px
 }

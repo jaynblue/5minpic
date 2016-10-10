@@ -12,9 +12,21 @@ export default class ImageList extends React.Component {
 		photosToShow: SHOW_NUM
 	}
 
+	componentDidMount = () => {
+		this.attachScrollListener();
+	}
+
+	componentDidUpdate = () => {
+		this.attachScrollListener();
+	}
+
+	componentWillUnmount = () => {
+		this.detachScrollListener();
+	}
+
 	resetStartState = () => {
 		this.detachScrollListener();
-		window.scrollTo(0,0);
+		window.scrollTo(0, 0);
 		this.setState({
 			photosToShow: SHOW_NUM
 		});
@@ -24,14 +36,6 @@ export default class ImageList extends React.Component {
 		this.setState({
 			photosToShow: this.state.photosToShow + SHOW_NUM
 		});
-	}
-
-	componentDidMount = () => {
-		this.attachScrollListener();
-	}
-
-	componentDidUpdate = () => {
-		this.attachScrollListener();
 	}
 
 	attachScrollListener = () => {
@@ -47,29 +51,38 @@ export default class ImageList extends React.Component {
 		window.removeEventListener('resize', this.scrollListener);
 	}
 
-	componentWillUnmount = () => {
-		this.detachScrollListener();
-	}
-
 	scrollListener = () => {
+		let scrollTop = 0;
+
 		function topPosition(domElt) {
-		  return (!domElt) ? 0 : domElt.offsetTop + topPosition(domElt.offsetParent);
+			return (domElt) ? domElt.offsetTop + topPosition(domElt.offsetParent) : 0;
 		}
-		var el = ReactDOM.findDOMNode(this);
-		var scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+		const el = ReactDOM.findDOMNode(this);
+
+		if (typeof window.pageYOffset === 'undefined') {
+			scrollTop = (
+				document.documentElement ||
+				document.body.parentNode ||
+				document.body
+			).scrollTop;
+		} else {
+			scrollTop = window.pageYOffset;
+		}
+
 		if (topPosition(el) + el.offsetHeight - scrollTop - window.innerHeight < TO_BOTTOM) {
 			this.detachScrollListener();
 			this.updateNumberToShow();
-	  	}
+		}
 	}
 
 	render() {
 		const showData = this.props.data.slice(0, this.state.photosToShow);
+
 		return (
 			<div className="image-list">
-					{showData.map((image, index) => {
-						return <MainImage image={image}  key={index} />;
-					})}
+				{showData.map((image, index) => {
+					return <MainImage image={image} key={index} />;
+				})}
 			</div>
 		);
 	}
