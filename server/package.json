@@ -1,5 +1,5 @@
 {
-  "name": "fiveminpic",
+  "name": "5snapImageTaker",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -14,7 +14,7 @@
     "express": "^4.13.4",
     "fluent-ffmpeg": "^2.0.1",
     "imagemagick": "^0.1.3",
-    "imagemin": "^5.1.2",
+    "imagemin": "5.1.2",
     "imagemin-pngquant": "^5.0.0",
     "moment": "^2.12.0",
     "morgan": "^1.7.0",

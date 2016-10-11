@@ -1,8 +1,9 @@
+"use strict";
 process.env.TZ = 'Asia/Ho_Chi_Minh';
 
-var fs = require('fs');
-
-const path = __dirname + '/../public/images/'
+const fs = require('fs');
+const path = require('path');
+const imagesPath = path.join(__dirname, '/../public/images/');
 
 function getDay(date, offset, h , m, s) {
     var offset = typeof offset !== 'undefined' ?  offset : 0;
@@ -27,15 +28,15 @@ function addMinToPath(path) {
 module.exports = (requestDate) => {
     if(!requestDate) return false;
     return new Promise(function(resolve, reject) {
-        fs.readdir(path, (err, files) => {
+        fs.readdir(imagesPath, (err, files) => {
             if (err) reject(err);
             var result = {
                 availableDates: {},
                 todayImages: []
             };
             files.forEach(filename => {
-                var filePath = path + filename;
-                stat = fs.statSync(filePath);
+                var filePath = imagesPath + filename;
+                var stat = fs.statSync(filePath);
                 if(stat.isFile() && !~filename.indexOf('min')) {
                     var createDate = new Date(stat['ctime']);
                     var createDay = getDay(createDate, 0, 12, 0, 0)+'';
