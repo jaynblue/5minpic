@@ -20,6 +20,9 @@ const data = {};
 function updateData(date) {
 	return new Promise(function(resolve, reject) {
 		getImagesList(date).then(result => {
+			result.todayImages.sort((a, b) => {
+				return b.ctime - a.ctime;
+			});
 			data[date] = result;
 			resolve(data[date]);
 		});
