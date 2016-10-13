@@ -10,7 +10,7 @@ export default class App extends React.Component {
 	static propTypes = {
 		availableDates: React.PropTypes.object,
 		requestData: React.PropTypes.func,
-		selectedDay: React.PropTypes.object,
+		selectedDay: React.PropTypes.string,
 		snaps: React.PropTypes.array
 	}
 

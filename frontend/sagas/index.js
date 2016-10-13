@@ -11,7 +11,7 @@ import {
 
 function* onDataRequest({ payload }) {
 	try {
-		const data = yield call(api.fetchData, payload.date);
+		const data = yield call(api.fetchData, payload);
 
 		yield put(receiveData(data));
 	} catch (error) {

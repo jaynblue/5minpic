@@ -10,7 +10,7 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
 	return {
 		snaps: state.snaps,
-		selectedDay: state.selectedDay
+		selectedDay: state.selectedDay.date
 	};
 };
 
